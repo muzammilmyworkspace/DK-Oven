@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>DK's Oven — The Pizza Expert | Wah Cantt</title>
+  <meta name="description" content="DK's Oven — Danish Khan's pizza, made with passion. Fresh dough, signature sauce, loaded toppings. Delivery & takeaway across Wah Cantt, New City, Taxila and Hassan Abdal. Call 0302-9384268." />
+  <meta name="theme-color" content="#1a0d08" />
+  <meta property="og:title" content="DK's Oven — Pizza Made With Passion" />
+  <meta property="og:description" content="Fresh, hot and loaded. Delivery across Wah Cantt, New City, Taxila & Hassan Abdal." />
+  <meta property="og:image" content="assets/img/banner.png" />
+  <link rel="icon" href="assets/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Kaushan+Script&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <img src="assets/img/logo.png" alt="" class="loader__logo" />
+      <div class="loader__bar"><span id="loaderBar"></span></div>
+      <p class="loader__txt"><span id="loaderPct">0</span>% &nbsp;·&nbsp; Oven garam ho raha hai…</p>
+    </div>
+    <div class="loader__curtain loader__curtain--red"></div>
+    <div class="loader__curtain loader__curtain--yellow"></div>
+  </div>
+
+  <!-- custom cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand" aria-label="DK's Oven home">
+      <img src="assets/img/logo.png" alt="DK's Oven logo" />
+      <span>DK's <b>Oven</b></span>
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#process">The Process</a>
+      <a href="#crave">Crave</a>
+      <a href="#menu">Menu</a>
+      <a href="#delivery">Delivery</a>
+      <a href="#danish">Danish Khan</a>
+    </nav>
+    <a href="tel:+923029384268" class="nav__cta btn btn--red btn--sm">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+      0302-9384268
+    </a>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero__glow"></div>
+      <div class="hero__grain"></div>
+
+      <div class="hero__copy">
+        <p class="eyebrow"><span class="dot"></span> Wah Cantt's Pizza Expert</p>
+        <h1 class="hero__title">
+          <span class="hero__line hero__line--pizza" data-split>PIZZA</span>
+          <span class="hero__line hero__line--script">Made With</span>
+          <span class="hero__line hero__line--passion" data-split>PASSION</span>
+        </h1>
+        <p class="hero__lead">Fresh dough every morning. Our own sauce. Toppings piled high, then into a blazing hot oven. <em>Pehli bite se pyaar ho jayega.</em></p>
+        <div class="hero__ctas">
+          <a href="#menu" class="btn btn--yellow magnetic">
+            <span>See the Menu</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="https://wa.me/923029384268?text=Assalam%20o%20Alaikum%20DK's%20Oven!%20Mujhe%20pizza%20order%20karna%20hai%20%F0%9F%8D%95" target="_blank" rel="noopener" class="btn btn--ghost magnetic">
+            <svg viewBox="0 0 32 32" aria-hidden="true" class="wa-ic"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.3 14.3 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.5z"/></svg>
+            <span>WhatsApp Order</span>
+          </a>
+        </div>
+        <ul class="hero__tags">
+          <li><b>Fast</b> Delivery</li>
+          <li><b>Fresh</b> &amp; Hot</li>
+          <li><b>Delivery</b> &amp; Takeaway</li>
+        </ul>
+      </div>
+
+      <div class="hero__stage" id="heroStage">
+        <svg class="steam steam--hero" viewBox="0 0 400 300" aria-hidden="true">
+          <path d="M120 290 C 90 240, 150 200, 120 150 S 150 60, 120 10" />
+          <path d="M200 290 C 170 230, 230 190, 200 140 S 230 50, 200 0" />
+          <path d="M280 290 C 250 240, 310 200, 280 150 S 310 60, 280 10" />
+          <path d="M160 290 C 140 250, 190 210, 160 170 S 180 90, 160 40" />
+          <path d="M240 290 C 220 250, 270 210, 240 170 S 260 90, 240 40" />
+        </svg>
+        <div class="hero__plate">
+          <div class="hero__ring"></div>
+          <img src="assets/img/hero-pizza.webp" alt="Freshly baked DK's Oven pepperoni pizza" class="hero__pizza" id="heroPizza" />
+        </div>
+        <!-- floating ingredients (svg drawn in JS) -->
+        <div class="floaters" id="floaters" aria-hidden="true"></div>
+
+        <div class="badge-spin" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" /></defs>
+            <text><textPath href="#circ">THE PIZZA EXPERT • FRESH &amp; HOT • DK'S OVEN • </textPath></text>
+          </svg>
+          <img src="assets/img/logo.png" alt="" />
+        </div>
+      </div>
+
+      <a href="#intro" class="scroll-hint" aria-label="Scroll down">
+        <span class="scroll-hint__mouse"><i></i></span>
+        <span>Scroll — dekho pizza kaise banta hai</span>
+      </a>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>FRESH &amp; HOT</span><i>✦</i><span>WAH CANTT</span><i>✦</i><span>NEW CITY</span><i>✦</i><span>TAXILA</span><i>✦</i><span>HASSAN ABDAL</span><i>✦</i><span>MADE WITH PASSION</span><i>✦</i>
+        <span>FRESH &amp; HOT</span><i>✦</i><span>WAH CANTT</span><i>✦</i><span>NEW CITY</span><i>✦</i><span>TAXILA</span><i>✦</i><span>HASSAN ABDAL</span><i>✦</i><span>MADE WITH PASSION</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ============ INTRO STATEMENT ============ -->
+    <section class="intro" id="intro">
+      <p class="intro__kicker">The DK's Promise</p>
+      <p class="intro__text" id="introText">Danish Khan ka oven sirf pizza nahi banata. It bakes <span class="hl-red">passion</span> into every slice: fresh dough, <span class="hl-yellow">melty cheese</span>, juicy chicken, and a crust that <span class="hl-red">crackles</span> when you bite in.</p>
+    </section>
+
+    <!-- ============ PROCESS (pinned scroll story) ============ -->
+    <section class="process" id="process">
+      <div class="process__pin" id="processPin">
+        <div class="process__bg"></div>
+
+        <div class="process__panel">
+          <p class="eyebrow eyebrow--light">From Dough to Your Door</p>
+          <div class="process__steps" id="processSteps">
+            <article class="pstep is-active">
+              <span class="pstep__num">01</span>
+              <h3>Fresh Dough</h3>
+              <p>Every morning our dough is kneaded fresh, rested, then hand-stretched into a soft, airy base. No frozen shortcuts, ever.</p>
+            </article>
+            <article class="pstep">
+              <span class="pstep__num">02</span>
+              <h3>Signature Sauce</h3>
+              <p>A rich, tangy tomato sauce, made in-house and swirled on from the centre out so every bite gets its share.</p>
+            </article>
+            <article class="pstep">
+              <span class="pstep__num">03</span>
+              <h3>Mozzarella Rain</h3>
+              <p>A generous blanket of shredded mozzarella. Kanjoosi nahi, cheese poora dalta hai.</p>
+            </article>
+            <article class="pstep">
+              <span class="pstep__num">04</span>
+              <h3>Loaded Toppings</h3>
+              <p>Tikka chicken, juicy tomatoes, crunchy capsicum, onions, olives and jalapeños, piled edge to edge.</p>
+            </article>
+            <article class="pstep">
+              <span class="pstep__num">05</span>
+              <h3>Into the Fire</h3>
+              <p>Into the blazing oven until the crust turns golden and the cheese bubbles and browns. Khushboo poore mohalle mein.</p>
+            </article>
+            <article class="pstep">
+              <span class="pstep__num">06</span>
+              <h3>Slice &amp; Pack</h3>
+              <p>Sliced clean and sealed hot in a DK's box, so it arrives exactly the way it left the oven.</p>
+            </article>
+            <article class="pstep">
+              <span class="pstep__num">07</span>
+              <h3>Rider On The Way</h3>
+              <p>Our rider grabs the box and races to your door. Wah Cantt, New City, Taxila, Hassan Abdal. Garam garam, seedha aap tak.</p>
+            </article>
+          </div>
+          <div class="process__progress"><span id="processBar"></span></div>
+          <ol class="process__dots" id="processDots" aria-hidden="true">
+            <li class="is-active"></li><li></li><li></li><li></li><li></li><li></li><li></li>
+          </ol>
+        </div>
+
+        <div class="process__stage">
+          <svg id="kitchen" viewBox="0 0 800 640" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Animated pizza being made, from dough to delivery">
+            <!-- built by js/process.js -->
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CRAVE ============ -->
+    <section class="crave" id="crave">
+      <div class="crave__hero">
+        <div class="crave__photo-wrap" id="cravePhoto">
+          <img src="assets/img/cheese-pull.jpg" alt="Hot pizza slice being pulled with long strings of melted cheese" class="crave__photo" />
+          <svg class="steam steam--crave" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M60 300 C 30 240, 90 200, 60 150 S 90 60, 60 10" />
+            <path d="M150 300 C 120 230, 180 190, 150 140 S 180 50, 150 0" />
+            <path d="M240 300 C 210 240, 270 200, 240 150 S 270 60, 240 10" />
+            <path d="M330 300 C 300 240, 360 200, 330 150 S 360 60, 330 10" />
+          </svg>
+          <div class="callout callout--1"><i></i><b>Stretchy Mozzarella</b><span>pulls for days</span></div>
+          <div class="callout callout--2"><i></i><b>Golden Crust</b><span>crispy outside, soft inside</span></div>
+          <div class="callout callout--3"><i></i><b>Fresh Toppings</b><span>cut by hand, every day</span></div>
+        </div>
+        <div class="crave__copy">
+          <p class="eyebrow">Warning: Bhook Lag Jayegi</p>
+          <h2 class="display">Muu mein <span class="text-red">paani</span><br/>aa gaya na?</h2>
+          <p>Smell that? Fresh out of the oven, cheese still bubbling, steam rising off every slice. That's the DK's moment, and it lands at your door still hot.</p>
+        </div>
+      </div>
+
+      <!-- horizontal gallery -->
+      <div class="hgallery" id="hgallery">
+        <div class="hgallery__head">
+          <h2 class="display display--sm">Pick your <span class="text-yellow">craving</span></h2>
+          <div class="hunger">
+            <span class="hunger__label">Bhook-o-meter</span>
+            <div class="hunger__bar"><span id="hungerFill"></span></div>
+            <span class="hunger__pct" id="hungerPct">12%</span>
+          </div>
+        </div>
+        <div class="hgallery__track" id="hTrack">
+          <figure class="fcard" data-tilt>
+            <div class="fcard__img"><img src="assets/img/cheesy-slices.jpg" alt="Cheese Lover pizza" loading="lazy" /></div>
+            <figcaption><span>01</span><h3>Cheese Lover</h3><p>Pure mozzarella overload. Simple, gooey, perfect.</p></figcaption>
+          </figure>
+          <figure class="fcard" data-tilt>
+            <div class="fcard__img"><img src="assets/img/pepperoni-top.jpg" alt="Beef Pepperoni pizza" loading="lazy" /></div>
+            <figcaption><span>02</span><h3>Beef Pepperoni</h3><p>Crispy-edged pepperoni cups on a sea of cheese.</p></figcaption>
+          </figure>
+          <figure class="fcard" data-tilt>
+            <div class="fcard__img"><img src="assets/img/chicken-top.jpg" alt="Grilled Chicken pizza" loading="lazy" /></div>
+            <figcaption><span>03</span><h3>Grilled Chicken</h3><p>Smoky grilled chicken, olives, our signature sauce.</p></figcaption>
+          </figure>
+          <figure class="fcard" data-tilt>
+            <div class="fcard__img"><img src="assets/img/supreme.jpg" alt="Supreme pizza" loading="lazy" /></div>
+            <figcaption><span>04</span><h3>Supreme</h3><p>Tikka chicken, capsicum, onion, jalapeño. Everything, everywhere.</p></figcaption>
+          </figure>
+          <figure class="fcard" data-tilt>
+            <div class="fcard__img"><img src="assets/img/tandoori.jpg" alt="Tandoori Chicken pizza" loading="lazy" /></div>
+            <figcaption><span>05</span><h3>Tandoori Chicken</h3><p>Desi tandoori masala meets Italian crust.</p></figcaption>
+          </figure>
+          <figure class="fcard" data-tilt>
+            <div class="fcard__img"><img src="assets/img/veggie.jpg" alt="Very Vegi pizza" loading="lazy" /></div>
+            <figcaption><span>06</span><h3>Very Vegi</h3><p>Mushroom, corn, capsicum, olives. Garden fresh.</p></figcaption>
+          </figure>
+          <figure class="fcard fcard--cta">
+            <div class="fcard__cta-inner">
+              <p>Ab aur intezar nahi.</p>
+              <a href="#menu" class="btn btn--yellow">Open the Menu</a>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MENU ============ -->
+    <section class="menu" id="menu">
+      <div class="menu__deco" aria-hidden="true"></div>
+      <div class="container">
+        <div class="menu__head">
+          <div>
+            <p class="eyebrow eyebrow--dark">Pizza Flavors</p>
+            <h2 class="display display--dark">The <span class="script">DK's</span> Menu</h2>
+          </div>
+          <div class="sizes" role="tablist" aria-label="Choose pizza size" id="sizeTabs">
+            <button role="tab" aria-selected="true" data-size="small">Small</button>
+            <button role="tab" aria-selected="false" data-size="regular">Regular</button>
+            <button role="tab" aria-selected="false" data-size="large">Large</button>
+            <button role="tab" aria-selected="false" data-size="xl">X-Large</button>
+            <span class="sizes__pill" id="sizePill"></span>
+          </div>
+        </div>
+
+        <div class="menu__grid" id="menuGrid"><!-- rendered by js --></div>
+
+        <div class="specials">
+          <h3 class="specials__title">Signature Crusts</h3>
+          <div class="specials__grid" id="specialsGrid"><!-- rendered by js --></div>
+        </div>
+
+        <div class="drinks">
+          <div class="drinks__label">
+            <h3>Cold Drinks</h3>
+            <p>Pizza ke saath thanda zaroori hai.</p>
+          </div>
+          <div class="drinks__list" id="drinksList"><!-- rendered by js --></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DELIVERY ROAD (rider running) ============ -->
+    <section class="road" id="road" aria-label="Rider racing across the city">
+      <div class="road__sky">
+        <div class="road__sun"></div>
+        <svg class="road__skyline road__skyline--far" viewBox="0 0 2400 300" preserveAspectRatio="none" aria-hidden="true" id="skyFar"></svg>
+        <svg class="road__skyline road__skyline--near" viewBox="0 0 2400 300" preserveAspectRatio="none" aria-hidden="true" id="skyNear"></svg>
+      </div>
+      <div class="road__strip">
+        <div class="road__lines" id="roadLines"></div>
+      </div>
+      <div class="road__signs" id="roadSigns">
+        <div class="sign"><b>Wah Cantt</b><span>0 km</span></div>
+        <div class="sign"><b>New City</b><span>→</span></div>
+        <div class="sign"><b>Taxila</b><span>→</span></div>
+        <div class="sign"><b>Hassan Abdal</b><span>→</span></div>
+      </div>
+      <div class="rider" id="rider"><!-- svg in js --></div>
+      <div class="road__title">
+        <h2 class="display">Garam pizza,<br/><span class="text-yellow">tez</span> delivery.</h2>
+      </div>
+    </section>
+
+    <!-- ============ MAP ============ -->
+    <section class="map" id="delivery">
+      <div class="map__pin" id="mapPin">
+        <div class="map__copy">
+          <p class="eyebrow eyebrow--light">Delivery Zones</p>
+          <h2 class="display display--sm">We ride <span class="text-yellow">all over</span> Wah Cantt &amp; beyond</h2>
+          <p>Wherever you are in the area, a DK's rider is already on the way to someone nearby. Scroll and follow the rider.</p>
+          <ul class="zones" id="zones">
+            <li data-zone="wah"><i></i><div><b>Wah Cantt</b><span>Home of DK's Oven</span></div></li>
+            <li data-zone="newcity"><i></i><div><b>New City</b><span>Phase 1 &amp; 2</span></div></li>
+            <li data-zone="taxila"><i></i><div><b>Taxila</b><span>Along GT Road</span></div></li>
+            <li data-zone="hassan"><i></i><div><b>Hassan Abdal</b><span>Yes, even here</span></div></li>
+          </ul>
+          <a href="https://wa.me/923029384268?text=Kya%20aap%20meri%20location%20par%20deliver%20karte%20hain%3F" target="_blank" rel="noopener" class="btn btn--yellow btn--sm">Check your area on WhatsApp</a>
+        </div>
+        <div class="map__canvas">
+          <svg id="mapSvg" viewBox="0 0 900 700" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Map of DK's Oven delivery area: Wah Cantt, New City, Taxila and Hassan Abdal"></svg>
+          <div class="map__toast" id="mapToast"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 2-5 0 2 1 3 2 3 0-4 1-7 2-10z"/></svg><span>Hot pizza delivered!</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DANISH ============ -->
+    <section class="danish" id="danish">
+      <div class="container danish__grid">
+        <div class="danish__badge" id="danishBadge">
+          <svg class="danish__ring" viewBox="0 0 400 400" aria-hidden="true">
+            <defs><path id="circ2" d="M200,200 m-176,0 a176,176 0 1,1 352,0 a176,176 0 1,1 -352,0" /></defs>
+            <text><textPath href="#circ2">DANISH KHAN ★ THE PIZZA EXPERT ★ DK'S OVEN ★ WAH CANTT ★ </textPath></text>
+          </svg>
+          <div class="danish__photo">
+            <img src="assets/img/danish.jpg" alt="Danish Khan, founder of DK's Oven" loading="lazy" />
+          </div>
+          <div class="danish__hat" aria-hidden="true">
+            <svg viewBox="0 0 120 90"><path d="M20 62c-14-4-18-24-4-32 4-14 22-18 30-10 8-12 30-12 36 2 16-4 30 12 22 28-2 6-6 10-12 12z" fill="#fff" stroke="#1a0d08" stroke-width="4" stroke-linejoin="round"/><rect x="22" y="60" width="72" height="22" rx="4" fill="#fff" stroke="#1a0d08" stroke-width="4"/><path d="M40 62v18M58 62v18M76 62v18" stroke="#1a0d08" stroke-width="3" opacity=".25"/></svg>
+          </div>
+        </div>
+        <div class="danish__copy">
+          <p class="eyebrow eyebrow--dark">The Man Behind The Oven</p>
+          <h2 class="display display--dark">Meet <span class="text-red">Danish&nbsp;Khan</span></h2>
+          <p class="danish__quote">“Pizza mere liye sirf business nahi. Jab tak har slice mujhe khud perfect na lage, woh oven se bahar nahi jata.”</p>
+          <p>DK's Oven is Danish Khan's own kitchen, and the name means exactly that: <b>Danish Khan's Oven</b>. He started with one goal: give Wah Cantt a pizza that tastes like it was made just for you, because it was. Every recipe, sauce and topping combination on this menu was tasted and approved by Danish himself.</p>
+          <p class="danish__sign">Danish Khan</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROMISES ============ -->
+    <section class="promises">
+      <div class="container promises__grid">
+        <article class="promise">
+          <div class="promise__ic"><svg viewBox="0 0 48 48"><path d="M24 4c2 8 12 12 12 24a12 12 0 0 1-24 0c0-6 4-10 4-10 0 4 2 6 4 6 0-8 2-14 4-20z"/></svg></div>
+          <h3>Fresh &amp; Hot</h3><p>Baked only when you order. Never sitting under a lamp.</p>
+        </article>
+        <article class="promise">
+          <div class="promise__ic"><svg viewBox="0 0 48 48"><circle cx="12" cy="34" r="7"/><circle cx="38" cy="34" r="7"/><path d="M12 34h12l6-14h8M30 20l-4-8h-6M24 34l-6-12"/></svg></div>
+          <h3>Fast Delivery</h3><p>Riders across Wah Cantt, New City, Taxila &amp; Hassan Abdal.</p>
+        </article>
+        <article class="promise">
+          <div class="promise__ic"><svg viewBox="0 0 48 48"><rect x="6" y="14" width="36" height="26" rx="3"/><path d="M6 22h36M16 14v-4h16v4"/></svg></div>
+          <h3>Delivery &amp; Takeaway</h3><p>Order to your door or pick it up yourself, piping hot.</p>
+        </article>
+        <article class="promise">
+          <div class="promise__ic"><svg viewBox="0 0 48 48"><path d="M24 42s-16-9-16-22a9 9 0 0 1 16-5 9 9 0 0 1 16 5c0 13-16 22-16 22z"/></svg></div>
+          <h3>Made With Passion</h3><p>Real ingredients, generous portions. Danish ki guarantee.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="order" id="order">
+      <div class="order__waves" aria-hidden="true">
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none"><path d="M0 120 Q 180 40 360 110 T 720 110 T 1080 110 T 1440 100 V0 H0z"/></svg>
+      </div>
+      <div class="container order__inner">
+        <img src="assets/img/logo.png" alt="" class="order__logo" />
+        <h2 class="order__title">Bhook lagi hai?<br/><span>Abhi order karo.</span></h2>
+        <a href="tel:+923029384268" class="order__phone">0302-9384268</a>
+        <div class="order__ctas">
+          <a href="https://wa.me/923029384268?text=Assalam%20o%20Alaikum%20DK's%20Oven!%20Mujhe%20pizza%20order%20karna%20hai%20%F0%9F%8D%95" target="_blank" rel="noopener" class="btn btn--green magnetic">
+            <svg viewBox="0 0 32 32" aria-hidden="true" class="wa-ic"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.3 14.3 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.5z"/></svg>
+            <span>Order on WhatsApp</span>
+          </a>
+          <a href="tel:+923029384268" class="btn btn--ink magnetic"><span>Call Now</span></a>
+        </div>
+        <p class="order__note">Only <b>Delivery</b> &amp; <b>Take Away</b> · Complaints &amp; Suggestions: <a href="tel:+923116900087">0311-6900087</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <img src="assets/img/logo.png" alt="DK's Oven" />
+        <p>DK's Oven, <i>The Pizza Expert</i>.<br/>Danish Khan's pizza, made with passion.</p>
+      </div>
+      <div>
+        <h4>Order</h4>
+        <a href="tel:+923029384268">0302-9384268</a>
+        <a href="https://wa.me/923029384268" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" class="js-insta" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <div>
+        <h4>We Deliver To</h4>
+        <span>Wah Cantt</span><span>New City</span><span>Taxila</span><span>Hassan Abdal</span>
+      </div>
+      <div>
+        <h4>Feedback</h4>
+        <span>Complaints &amp; Suggestions</span>
+        <a href="tel:+923116900087">0311-6900087</a>
+      </div>
+    </div>
+    <div class="container footer__base">
+      <span>© <span id="year"></span> DK's Oven. All rights reserved.</span>
+      <span>Made with 🍕 &amp; passion in Wah Cantt</span>
+    </div>
+  </footer>
+
+  <!-- ============ FLOATING BUTTONS ============ -->
+  <div class="fab" aria-label="Quick contact">
+    <a href="#" class="fab__btn fab__btn--insta js-insta" target="_blank" rel="noopener" aria-label="DK's Oven on Instagram">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" class="fill"/></svg>
+    </a>
+    <a href="https://wa.me/923029384268?text=Assalam%20o%20Alaikum%20DK's%20Oven!%20Mujhe%20pizza%20order%20karna%20hai%20%F0%9F%8D%95" class="fab__btn fab__btn--wa" target="_blank" rel="noopener" aria-label="Order on WhatsApp">
+      <svg viewBox="0 0 32 32"><path class="fill" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.3 14.3 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.5z"/></svg>
+      <span class="fab__tip">Order now!</span>
+    </a>
+  </div>
+
+  <!-- cart -->
+  <button class="cart-btn" id="cartBtn" aria-label="Open your order">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>
+    <span class="cart-btn__count" id="cartCount">0</span>
+    <span class="cart-btn__total" id="cartBtnTotal">Rs 0</span>
+  </button>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__scrim" data-close></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <header class="drawer__head">
+        <h3 id="drawerTitle">Your Order</h3>
+        <button class="drawer__x" data-close aria-label="Close">×</button>
+      </header>
+      <div class="drawer__items" id="cartItems"></div>
+      <form class="drawer__form" id="orderForm">
+        <div class="seg" role="radiogroup" aria-label="Order type">
+          <label><input type="radio" name="otype" value="Delivery" checked /><span>Delivery</span></label>
+          <label><input type="radio" name="otype" value="Take Away" /><span>Take Away</span></label>
+        </div>
+        <input name="name" placeholder="Your name" autocomplete="name" required />
+        <input name="phone" placeholder="Phone number" inputmode="tel" autocomplete="tel" required />
+        <select name="area" aria-label="Area">
+          <option>Wah Cantt</option><option>New City</option><option>Taxila</option><option>Hassan Abdal</option>
+        </select>
+        <textarea name="address" rows="2" placeholder="Full address / nearest landmark"></textarea>
+        <div class="drawer__total"><span>Estimated total</span><b id="cartTotal">Rs 0</b></div>
+        <p class="drawer__fine">Final bill confirmed on WhatsApp. Items marked "price on order" are added at confirmation.</p>
+        <button type="submit" class="btn btn--green btn--block">
+          <svg viewBox="0 0 32 32" aria-hidden="true" class="wa-ic"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1 1 16 26.7z"/></svg>
+          <span>Send Order on WhatsApp</span>
+        </button>
+      </form>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/MotionPathPlugin.min.js"></script>
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/art.js"></script>
+  <script src="js/process.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

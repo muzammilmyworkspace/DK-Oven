@@ -283,11 +283,11 @@
   try { cart = JSON.parse(localStorage.getItem("dk-cart") || "[]"); } catch (e) { cart = []; }
   const save = () => { try { localStorage.setItem("dk-cart", JSON.stringify(cart)); } catch (e) {} };
 
-  function addItem(kind, i) {
+  function addItem(kind, i, sz = size, qty = 1) {
     let item;
     if (kind === "pizza") {
       const p = DK.pizzas[i];
-      item = { id: p.name + "|" + size, name: p.name, note: DK.sizes[size].label, price: p.price[DK.sizes[size].key] };
+      item = { id: p.name + "|" + sz, name: p.name, note: DK.sizes[sz].label, price: p.price[DK.sizes[sz].key] };
     } else if (kind === "special") {
       const s = DK.specials[i];
       item = { id: s.name, name: s.name, note: "Signature crust", price: null };
@@ -296,11 +296,11 @@
       item = { id: d.name, name: d.name, note: "Cold drink", price: null };
     }
     const ex = cart.find((c) => c.id === item.id);
-    if (ex) ex.qty++;
-    else cart.push({ ...item, qty: 1 });
+    if (ex) ex.qty += qty;
+    else cart.push({ ...item, qty });
     save();
     renderCart();
-    toast(`${item.name}${kind === "pizza" ? " (" + item.note + ")" : ""} added 🍕`);
+    toast(`${qty > 1 ? qty + " × " : ""}${item.name}${kind === "pizza" ? " (" + item.note + ")" : ""} added 🍕`);
   }
 
   function totals() {
@@ -313,12 +313,15 @@
     $("#cartBtnTotal").textContent = fmt(t);
     $("#cartTotal").textContent = fmt(t);
     $("#cartBtn").classList.toggle("is-visible", n > 0);
-    const list = $("#cartItems");
+    $("#formTotal").textContent = fmt(t);
+    const list = $("#cartItems"), flist = $("#formItems");
     if (!cart.length) {
       list.innerHTML = `<div class="drawer__empty">Abhi tak kuch add nahi kiya.<br/>Menu se apna favourite chuno!</div>`;
+      flist.innerHTML = `<div class="oform__empty">Your order is empty. Pick an item above or add from the menu.</div>`;
       return;
     }
-    list.innerHTML = cart.map((c, idx) => `
+    $("#itemsErr").classList.remove("is-on");
+    list.innerHTML = flist.innerHTML = cart.map((c, idx) => `
       <div class="citem">
         <b>${c.name}</b>
         <div class="citem__qty"><button data-q="-1" data-idx="${idx}" aria-label="Less">−</button><span>${c.qty}</span><button data-q="1" data-idx="${idx}" aria-label="More">+</button></div>
@@ -368,24 +371,220 @@
   $$("[data-close]", drawer).forEach((b) => b.addEventListener("click", closeDrawer));
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeDrawer(); closeNav(); } });
 
-  $("#orderForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!cart.length) { toast("Pehle menu se kuch add karein 🙂"); return; }
-    const f = new FormData(e.target);
-    const lines = cart.map((c) => `• ${c.qty} × ${c.name} (${c.note})${c.price ? " = " + fmt(c.price * c.qty) : ""}`);
-    const { t } = totals();
-    const msg = [
-      "*New Order, DK's Oven* 🍕", "",
-      ...lines, "",
-      `*Estimated total:* ${fmt(t)}${cart.some((c) => !c.price) ? " + items priced on order" : ""}`,
-      `*Type:* ${f.get("otype")}`,
-      `*Name:* ${f.get("name")}`,
-      `*Phone:* ${f.get("phone")}`,
-      `*Area:* ${f.get("area")}`,
-      f.get("address") ? `*Address:* ${f.get("address")}` : "",
-    ].filter((x, i, arr) => x !== "" || arr[i - 1] !== "").join("\n");
-    window.open(`https://wa.me/${DK.phone}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+  $("[data-checkout]").addEventListener("click", () => {
+    closeDrawer();
+    setTimeout(() => scrollToTarget("#order-form"), 250);
   });
+
+  /* ---------------- order form ---------------- */
+  const form = $("#orderForm");
+  const pickItem = $("#pickItem"), pickSize = $("#pickSize"), pickQty = $("#pickQty"), pickAdd = $("#pickAdd");
+  pickItem.innerHTML =
+    `<optgroup label="Pizza Flavors">${DK.pizzas.map((p, i) => `<option value="pizza:${i}">${p.name}</option>`).join("")}</optgroup>` +
+    `<optgroup label="Signature Crusts">${DK.specials.map((p, i) => `<option value="special:${i}">${p.name}</option>`).join("")}</optgroup>` +
+    `<optgroup label="Cold Drinks">${DK.drinks.map((p, i) => `<option value="drink:${i}">${p.name}</option>`).join("")}</optgroup>`;
+  pickSize.innerHTML = sizeKeys.map((k) => `<option value="${k}">${DK.sizes[k].label}</option>`).join("");
+  let pq = 1;
+  function syncPicker() {
+    const [kind, i] = pickItem.value.split(":");
+    const isPizza = kind === "pizza";
+    pickSize.disabled = !isPizza;
+    pickSize.closest(".field").classList.toggle("is-disabled", !isPizza);
+    pickQty.textContent = pq;
+    const price = isPizza ? DK.pizzas[+i].price[DK.sizes[pickSize.value].key] * pq : null;
+    pickAdd.querySelector("span").textContent = price ? `Add · ${fmt(price)}` : "Add";
+  }
+  pickItem.addEventListener("change", syncPicker);
+  pickSize.addEventListener("change", syncPicker);
+  $$("[data-pq]").forEach((b) => b.addEventListener("click", () => { pq = Math.max(1, Math.min(20, pq + +b.dataset.pq)); syncPicker(); }));
+  pickAdd.addEventListener("click", () => {
+    const [kind, i] = pickItem.value.split(":");
+    addItem(kind, +i, pickSize.value, pq);
+    pq = 1;
+    syncPicker();
+  });
+  syncPicker();
+
+  // remember the customer's details for next time (this browser only)
+  const FIELDS = ["name", "phone", "email", "area", "address", "payment"];
+  try {
+    const saved = JSON.parse(localStorage.getItem("dk-customer") || "{}");
+    FIELDS.forEach((k) => { if (saved[k] && form.elements[k]) form.elements[k].value = saved[k]; });
+  } catch (e) {}
+
+  const isDelivery = () => form.elements.otype.value === "Delivery";
+  function syncType() { $$(".js-delivery", form).forEach((n) => (n.hidden = !isDelivery())); }
+  $$('input[name="otype"]', form).forEach((r) => r.addEventListener("change", syncType));
+  syncType();
+
+  const phoneOk = (v) => /^(\+92|0092|92|0)?3\d{9}$/.test(v.replace(/[\s-]/g, ""));
+  const emailOk = (v) => !v || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+  function setErr(name, bad) {
+    form.elements[name].closest(".field").classList.toggle("is-invalid", bad);
+    return bad;
+  }
+  ["name", "phone", "email", "address"].forEach((n) =>
+    form.elements[n].addEventListener("input", () => form.elements[n].closest(".field").classList.remove("is-invalid"))
+  );
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const v = (k) => (form.elements[k].value || "").trim();
+    const errs = [
+      setErr("name", v("name").length < 2),
+      setErr("phone", !phoneOk(v("phone"))),
+      setErr("email", !emailOk(v("email"))),
+      setErr("address", isDelivery() && v("address").length < 5),
+    ];
+    const noItems = !cart.length;
+    $("#itemsErr").classList.toggle("is-on", noItems);
+    if (noItems || errs.some(Boolean)) {
+      const first = noItems ? $("#formItems") : form.querySelector(".is-invalid");
+      if (first) scrollToTarget(first.closest(".oform__col") || first);
+      toast(noItems ? "Pehle kam az kam ek item add karein 🍕" : "Kuch fields check karein ✋");
+      return;
+    }
+    try { localStorage.setItem("dk-customer", JSON.stringify(Object.fromEntries(FIELDS.map((k) => [k, v(k)])))); } catch (err) {}
+
+    const { t } = totals();
+    const bar = "━━━━━━━━━━━━━━";
+    const msg = [
+      "🛒 *NEW ORDER*  ·  DK's Oven 🍕",
+      bar,
+      "*Order:*",
+      ...cart.map((c) => `• ${c.qty} × ${c.name} (${c.note})${c.price ? " = " + fmt(c.price * c.qty) : " · price on order"}`),
+      "",
+      `*Estimated total:* ${fmt(t)}${cart.some((c) => !c.price) ? " + items priced on order" : ""}`,
+      bar,
+      "*Customer details:*",
+      `👤 Name: ${v("name")}`,
+      `📞 Contact: ${v("phone")}`,
+      v("email") ? `✉️ Email: ${v("email")}` : null,
+      `🛵 Order type: ${form.elements.otype.value}`,
+      isDelivery() ? `📍 Area: ${v("area")}` : null,
+      isDelivery() ? `🏠 Address: ${v("address")}` : null,
+      `⏰ When: ${v("time")}`,
+      `💳 Payment: ${v("payment")}`,
+      v("notes") ? `📝 Notes: ${v("notes")}` : null,
+      bar,
+      "Sent from the DK's Oven website",
+    ].filter((x) => x !== null).join("\n");
+
+    const url = `https://wa.me/${DK.phone}?text=${encodeURIComponent(msg)}`;
+    $("#waRetry").href = url;
+    const w = window.open(url, "_blank", "noopener");
+    if (!w) location.href = url; // popup blocked: open in this tab instead
+    form.hidden = true;
+    $("#orderDone").hidden = false;
+    gsap.from("#orderDone", { y: 30, opacity: 0, scale: 0.96, duration: 0.7, ease: "back.out(1.6)" });
+    ScrollTrigger.refresh();
+    scrollToTarget("#order-form");
+  });
+
+  $("#newOrder").addEventListener("click", () => {
+    cart = [];
+    save();
+    renderCart();
+    form.elements.notes.value = "";
+    $("#orderDone").hidden = true;
+    form.hidden = false;
+    ScrollTrigger.refresh();
+  });
+
+  gsap.from(".oform__head > *, .oform__card", { y: 50, opacity: 0, stagger: 0.1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: "#order-form", start: "top 75%" } });
+
+  /* ---------------- quick order (intro section) ---------------- */
+  (function () {
+    const qf = $("#quickForm");
+    const qItem = $("#qItem"), qSize = $("#qSize"), qQty = $("#qQty"), qTotal = $("#qTotal");
+    qItem.innerHTML = DK.pizzas.map((p, i) => `<option value="${i}">${p.name}</option>`).join("");
+    qSize.innerHTML = sizeKeys.map((k) => `<option value="${k}">${DK.sizes[k].label}</option>`).join("");
+    let qq = 1;
+    const price = () => DK.pizzas[+qItem.value].price[DK.sizes[qSize.value].key] * qq;
+    const sync = () => { qQty.textContent = qq; qTotal.textContent = fmt(price()); };
+    qItem.addEventListener("change", sync);
+    qSize.addEventListener("change", sync);
+    $$("[data-qq]", qf).forEach((b) => b.addEventListener("click", () => { qq = Math.max(1, Math.min(20, qq + +b.dataset.qq)); sync(); }));
+    sync();
+
+    try {
+      const saved = JSON.parse(localStorage.getItem("dk-customer") || "{}");
+      ["name", "phone", "address"].forEach((k) => { if (saved[k]) qf.elements[k].value = saved[k]; });
+    } catch (e) {}
+
+    const mark = (name, bad) => { qf.elements[name].closest(".field").classList.toggle("is-invalid", bad); return bad; };
+    ["name", "phone", "address"].forEach((n) => qf.elements[n].addEventListener("input", () => mark(n, false)));
+
+    qf.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = (k) => (qf.elements[k].value || "").trim();
+      const bad = [mark("name", v("name").length < 2), mark("phone", !phoneOk(v("phone"))), mark("address", v("address").length < 4)];
+      if (bad.some(Boolean)) { toast("Kuch fields check karein ✋"); return; }
+      try {
+        const saved = JSON.parse(localStorage.getItem("dk-customer") || "{}");
+        localStorage.setItem("dk-customer", JSON.stringify({ ...saved, name: v("name"), phone: v("phone"), address: v("address") }));
+      } catch (err) {}
+      const p = DK.pizzas[+qItem.value];
+      const bar = "━━━━━━━━━━━━━━";
+      const msg = [
+        "⚡ *NEW QUICK ORDER*  ·  DK's Oven 🍕",
+        bar,
+        `• ${qq} × ${p.name} (${DK.sizes[qSize.value].label}) = ${fmt(price())}`,
+        "",
+        `*Estimated total:* ${fmt(price())}`,
+        bar,
+        `👤 Name: ${v("name")}`,
+        `📞 Contact: ${v("phone")}`,
+        `🏠 Address: ${v("address")}`,
+        bar,
+        "Sent from the DK's Oven website",
+      ].join("\n");
+      const url = `https://wa.me/${DK.phone}?text=${encodeURIComponent(msg)}`;
+      const w = window.open(url, "_blank", "noopener");
+      if (!w) location.href = url;
+      toast("WhatsApp khul gaya. Bas Send dabayein ✅");
+    });
+
+    gsap.from(qf, { x: 60, opacity: 0, duration: 1.1, ease: "power3.out", scrollTrigger: { trigger: "#intro", start: "top 75%" } });
+  })();
+
+  /* ---------------- Google reviews ---------------- */
+  (function () {
+    const fallback = "https://www.google.com/search?q=" + encodeURIComponent("DK's Oven Wah Cantt reviews");
+    $("#gAll").href = DK.googleReviewsUrl || fallback;
+    $("#gWrite").href = DK.googleWriteReviewUrl || DK.googleReviewsUrl || fallback;
+    const stars = (n) => `<span class="stars" style="--r:${(Math.max(0, Math.min(5, n)) / 5) * 100}%" aria-label="${n} out of 5 stars">★★★★★</span>`;
+    if (DK.googleRating) {
+      $("#gRating").innerHTML = `<strong>${(+DK.googleRating).toFixed(1)}</strong>${stars(+DK.googleRating)}${DK.googleReviewCount ? `<span>${DK.googleReviewCount} reviews</span>` : ""}`;
+    }
+    const track = $("#reviewsTrack");
+    const esc = (x) => String(x || "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    if (!DK.reviews.length) {
+      track.innerHTML = `
+        <div class="rv-empty">
+          <div class="rv-empty__ic">★</div>
+          <div><h3>Aap ka review hamari taaqat hai</h3>
+          <p>Enjoyed your DK's pizza? Leave us a quick review on Google. It helps more people in Wah Cantt find real, passion-made pizza.</p></div>
+          <a href="${$("#gWrite").href}" target="_blank" rel="noopener" class="btn btn--red">Review us on Google</a>
+        </div>`;
+      return;
+    }
+    const cols = ["#e0261b", "#8a1a12", "#e9a440", "#3d8b3d", "#1976d2", "#6a3a26"];
+    const g = $(".gcard__g").outerHTML.replace('class="gcard__g"', 'class="rv__g"');
+    track.innerHTML = DK.reviews.map((r, i) => `
+      <figure class="rv">
+        <div class="rv__top">
+          <span class="rv__av" style="background:${cols[i % cols.length]}">${esc(r.name).charAt(0).toUpperCase()}</span>
+          <div><b>${esc(r.name)}</b><small>${esc(r.date)}</small></div>
+          ${g}
+        </div>
+        ${stars(+r.rating || 5)}
+        <blockquote>${esc(r.text)}</blockquote>
+      </figure>`).join("");
+    gsap.from(".rv", { y: 40, opacity: 0, stagger: 0.08, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: track, start: "top 85%" } });
+  })();
+  gsap.from(".reviews__head > *", { y: 40, opacity: 0, stagger: 0.12, duration: 1, ease: "power3.out", scrollTrigger: { trigger: "#reviews", start: "top 80%" } });
+
   renderCart();
 
   /* =========================================================

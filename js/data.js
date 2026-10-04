@@ -45,4 +45,18 @@ window.DK = {
   ],
 
   zones: ["Wah Cantt", "New City", "Taxila", "Hassan Abdal"],
+
+  /* ---------------- Google Reviews ----------------
+     googleReviewsUrl : link to the Google Maps / Business profile reviews
+     googleWriteReviewUrl : the "Ask for reviews" link from Google Business Profile
+                            (looks like https://g.page/r/XXXX/review)
+     googleRating / googleReviewCount : copy from Google, e.g. 4.8 and 120 (leave null to hide)
+     reviews : paste REAL reviews from Google here, e.g.
+       { name: "Customer name", rating: 5, text: "Review text…", date: "2 weeks ago" },
+  */
+  googleReviewsUrl: "",
+  googleWriteReviewUrl: "",
+  googleRating: null,
+  googleReviewCount: null,
+  reviews: [],
 };

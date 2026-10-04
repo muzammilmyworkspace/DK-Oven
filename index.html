@@ -42,7 +42,8 @@
       <a href="#crave">Crave</a>
       <a href="#menu">Menu</a>
       <a href="#delivery">Delivery</a>
-      <a href="#danish">Danish Khan</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#order-form">Order</a>
     </nav>
     <a href="tel:+923029384268" class="nav__cta btn btn--red btn--sm">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
@@ -123,8 +124,33 @@
 
     <!-- ============ INTRO STATEMENT ============ -->
     <section class="intro" id="intro">
-      <p class="intro__kicker">The DK's Promise</p>
-      <p class="intro__text" id="introText">Danish Khan ka oven sirf pizza nahi banata. It bakes <span class="hl-red">passion</span> into every slice: fresh dough, <span class="hl-yellow">melty cheese</span>, juicy chicken, and a crust that <span class="hl-red">crackles</span> when you bite in.</p>
+      <div class="intro__copy">
+        <p class="intro__kicker">The DK's Promise</p>
+        <p class="intro__text" id="introText">Danish Khan ka oven sirf pizza nahi banata. It bakes <span class="hl-red">passion</span> into every slice: fresh dough, <span class="hl-yellow">melty cheese</span>, juicy chicken, and a crust that <span class="hl-red">crackles</span> when you bite in.</p>
+      </div>
+
+      <form class="qform" id="quickForm" novalidate>
+        <div class="qform__head">
+          <span class="qform__badge">⚡ Quick Order</span>
+          <h3>Bhook lagi hai? <span>30 second</span> mein order karo</h3>
+        </div>
+        <div class="qform__grid">
+          <label class="field field--full"><span>Pizza</span><select name="item" id="qItem"></select></label>
+          <label class="field"><span>Size</span><select name="size" id="qSize"></select></label>
+          <div class="field"><span>Qty</span>
+            <div class="qty"><button type="button" data-qq="-1" aria-label="Less">−</button><output id="qQty">1</output><button type="button" data-qq="1" aria-label="More">+</button></div>
+          </div>
+          <label class="field"><span>Your name *</span><input name="name" autocomplete="name" placeholder="e.g. Ali Khan" /><em class="field__err">Apna naam likhein</em></label>
+          <label class="field"><span>Contact number *</span><input name="phone" inputmode="tel" autocomplete="tel" placeholder="03xx-xxxxxxx" /><em class="field__err">Sahi mobile number likhein</em></label>
+          <label class="field field--full"><span>Delivery address *</span><input name="address" autocomplete="street-address" placeholder="House #, street, area (Wah Cantt / Taxila…)" /><em class="field__err">Address likhein, ya "Take Away" likh dein</em></label>
+        </div>
+        <div class="qform__total"><span>Estimated</span><b id="qTotal">Rs 700</b></div>
+        <button type="submit" class="btn btn--green btn--block">
+          <svg viewBox="0 0 32 32" aria-hidden="true" class="wa-ic"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.3 14.3 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.5z"/></svg>
+          <span>Send Order on WhatsApp</span>
+        </button>
+        <p class="qform__more">Zyada items ya email bhi add karni hai? <a href="#order-form">Full order form →</a></p>
+      </form>
     </section>
 
     <!-- ============ PROCESS (pinned scroll story) ============ -->
@@ -378,6 +404,98 @@
       </div>
     </section>
 
+    <!-- ============ GOOGLE REVIEWS ============ -->
+    <section class="reviews" id="reviews">
+      <div class="container">
+        <div class="reviews__head">
+          <div>
+            <p class="eyebrow eyebrow--dark">Google Reviews</p>
+            <h2 class="display display--sm display--dark">Log kya <span class="text-red">kehte</span> hain</h2>
+            <p class="reviews__sub">Real reviews from real customers on Google. Tried DK's Oven? Tell Wah Cantt what you think.</p>
+          </div>
+          <div class="gcard">
+            <div class="gcard__top">
+              <svg class="gcard__g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+              <div>
+                <b>DK's Oven on Google</b>
+                <div class="gcard__rating" id="gRating"><span>See what customers are saying</span></div>
+              </div>
+            </div>
+            <div class="gcard__btns">
+              <a href="#" id="gAll" target="_blank" rel="noopener" class="btn btn--ink btn--sm">See all reviews</a>
+              <a href="#" id="gWrite" target="_blank" rel="noopener" class="btn btn--red btn--sm">Write a review</a>
+            </div>
+          </div>
+        </div>
+        <div class="reviews__track" id="reviewsTrack"><!-- rendered by js from js/data.js --></div>
+      </div>
+    </section>
+
+    <!-- ============ ORDER FORM ============ -->
+    <section class="oform" id="order-form">
+      <div class="container">
+        <div class="oform__head">
+          <p class="eyebrow">Order Form</p>
+          <h2 class="display display--sm">Apna order <span class="text-yellow">yahan</span> likhein</h2>
+          <p>Pick your pizzas, fill in your details and tap send. Your order opens in WhatsApp, ready to go to DK's Oven.</p>
+        </div>
+
+        <form class="oform__card" id="orderForm" novalidate>
+          <div class="oform__col oform__col--order">
+            <h3><span>1</span> Your Order</h3>
+            <div class="picker">
+              <label class="field field--full"><span>Item</span><select id="pickItem"></select></label>
+              <label class="field"><span>Size</span><select id="pickSize"></select></label>
+              <div class="field"><span>Qty</span>
+                <div class="qty"><button type="button" data-pq="-1" aria-label="Less">−</button><output id="pickQty">1</output><button type="button" data-pq="1" aria-label="More">+</button></div>
+              </div>
+              <button type="button" class="btn btn--yellow picker__add" id="pickAdd"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Add</span></button>
+            </div>
+            <div class="oform__items" id="formItems"></div>
+            <p class="field__err field__err--items" id="itemsErr">Pehle kam az kam ek item add karein.</p>
+            <div class="oform__total"><span>Estimated total</span><b id="formTotal">Rs 0</b></div>
+            <p class="oform__fine">Final bill is confirmed on WhatsApp. Items marked "price on order" are added then.</p>
+          </div>
+
+          <div class="oform__col">
+            <h3><span>2</span> Your Details</h3>
+            <div class="seg seg--dark" role="radiogroup" aria-label="Order type">
+              <label><input type="radio" name="otype" value="Delivery" checked /><span>🛵 Delivery</span></label>
+              <label><input type="radio" name="otype" value="Take Away" /><span>🥡 Take Away</span></label>
+            </div>
+            <div class="oform__grid">
+              <label class="field"><span>Full name *</span><input name="name" autocomplete="name" placeholder="e.g. Ali Khan" required /><em class="field__err">Apna naam likhein</em></label>
+              <label class="field"><span>Contact number *</span><input name="phone" inputmode="tel" autocomplete="tel" placeholder="03xx-xxxxxxx" required /><em class="field__err">Sahi mobile number likhein (03xx-xxxxxxx)</em></label>
+              <label class="field"><span>Email (optional)</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" /><em class="field__err">Email sahi nahi lag rahi</em></label>
+              <label class="field js-delivery"><span>Area *</span>
+                <select name="area"><option>Wah Cantt</option><option>New City</option><option>Taxila</option><option>Hassan Abdal</option></select>
+              </label>
+              <label class="field field--full js-delivery"><span>Full address *</span><textarea name="address" rows="2" autocomplete="street-address" placeholder="House #, street, block / nearest landmark"></textarea><em class="field__err">Delivery ke liye address zaroori hai</em></label>
+              <label class="field"><span>When?</span>
+                <select name="time"><option>As soon as possible</option><option>In 30 minutes</option><option>In 1 hour</option><option>Later (I'll confirm on WhatsApp)</option></select>
+              </label>
+              <label class="field"><span>Payment</span>
+                <select name="payment"><option>Cash on Delivery</option><option>Online transfer</option></select>
+              </label>
+              <label class="field field--full"><span>Special instructions</span><textarea name="notes" rows="2" placeholder="Extra cheese? Less spicy? Ring the bell twice?"></textarea></label>
+            </div>
+            <button type="submit" class="btn btn--green btn--block oform__send">
+              <svg viewBox="0 0 32 32" aria-hidden="true" class="wa-ic"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.3 14.3 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.5z"/></svg>
+              <span>Send Order on WhatsApp</span>
+            </button>
+            <p class="oform__fine">WhatsApp will open with your full order typed in. Just tap <b>Send</b>.</p>
+          </div>
+        </form>
+
+        <div class="oform__done" id="orderDone" hidden>
+          <div class="oform__done-ic">✓</div>
+          <h3>Order WhatsApp par ready hai!</h3>
+          <p>Tap <b>Send</b> in WhatsApp and DK's Oven will confirm your order. WhatsApp didn't open? <a href="#" id="waRetry" target="_blank" rel="noopener">Tap here</a>.</p>
+          <button type="button" class="btn btn--yellow btn--sm" id="newOrder">Start a new order</button>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ FINAL CTA ============ -->
     <section class="order" id="order">
       <div class="order__waves" aria-hidden="true">
@@ -392,6 +510,7 @@
             <svg viewBox="0 0 32 32" aria-hidden="true" class="wa-ic"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.3 14.3 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.5z"/></svg>
             <span>Order on WhatsApp</span>
           </a>
+          <a href="#order-form" class="btn btn--yellow magnetic"><span>Fill Order Form</span></a>
           <a href="tel:+923029384268" class="btn btn--ink magnetic"><span>Call Now</span></a>
         </div>
         <p class="order__note">Only <b>Delivery</b> &amp; <b>Take Away</b> · Complaints &amp; Suggestions: <a href="tel:+923116900087">0311-6900087</a></p>
@@ -453,24 +572,13 @@
         <button class="drawer__x" data-close aria-label="Close">×</button>
       </header>
       <div class="drawer__items" id="cartItems"></div>
-      <form class="drawer__form" id="orderForm">
-        <div class="seg" role="radiogroup" aria-label="Order type">
-          <label><input type="radio" name="otype" value="Delivery" checked /><span>Delivery</span></label>
-          <label><input type="radio" name="otype" value="Take Away" /><span>Take Away</span></label>
-        </div>
-        <input name="name" placeholder="Your name" autocomplete="name" required />
-        <input name="phone" placeholder="Phone number" inputmode="tel" autocomplete="tel" required />
-        <select name="area" aria-label="Area">
-          <option>Wah Cantt</option><option>New City</option><option>Taxila</option><option>Hassan Abdal</option>
-        </select>
-        <textarea name="address" rows="2" placeholder="Full address / nearest landmark"></textarea>
+      <div class="drawer__form">
         <div class="drawer__total"><span>Estimated total</span><b id="cartTotal">Rs 0</b></div>
-        <p class="drawer__fine">Final bill confirmed on WhatsApp. Items marked "price on order" are added at confirmation.</p>
-        <button type="submit" class="btn btn--green btn--block">
-          <svg viewBox="0 0 32 32" aria-hidden="true" class="wa-ic"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1 1 16 26.7z"/></svg>
-          <span>Send Order on WhatsApp</span>
+        <button type="button" class="btn btn--green btn--block" data-checkout>
+          <span>Checkout: add your details</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
-      </form>
+      </div>
     </aside>
   </div>
 
